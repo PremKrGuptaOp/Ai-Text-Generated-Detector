@@ -25,13 +25,18 @@ export default function Dashboard() {
     return (
       <div style={{
         minHeight: '100vh',
-        background: 'linear-gradient(135deg, #ffffff 0%, #f9fafb 100%)',
+        background: 'linear-gradient(135deg, #f8fafc 0%, #e0e7ff 100%)',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        fontFamily: 'system-ui, -apple-system, sans-serif'
+        fontFamily: 'system-ui, -apple-system, sans-serif',
+        flexDirection: 'column',
+        gap: '1rem'
       }}>
-        <p style={{ color: '#6b7280' }}>Loading...</p>
+        <div style={{
+          fontSize: '3rem'
+        }}>⏳</div>
+        <p style={{ color: '#475569', fontWeight: 600 }}>Loading statistics...</p>
       </div>
     )
   }
@@ -40,12 +45,12 @@ export default function Dashboard() {
     return (
       <div style={{
         minHeight: '100vh',
-        background: 'linear-gradient(135deg, #ffffff 0%, #f9fafb 100%)',
+        background: 'linear-gradient(135deg, #f8fafc 0%, #e0e7ff 100%)',
         padding: '4rem 2rem',
         fontFamily: 'system-ui, -apple-system, sans-serif'
       }}>
         <div style={{ maxWidth: '1000px', margin: '0 auto', textAlign: 'center' }}>
-          <p style={{ color: '#6b7280', fontSize: '1.1rem' }}>No data available</p>
+          <p style={{ color: '#64748b', fontSize: '1.1rem', fontWeight: 500 }}>No data available</p>
         </div>
       </div>
     )
@@ -54,42 +59,77 @@ export default function Dashboard() {
   const StatCard = ({ title, value, subtitle, color = '#3b82f6', icon }) => (
     <div style={{
       background: '#ffffff',
-      borderRadius: '12px',
-      padding: '2rem',
-      border: '1px solid #e5e7eb',
+      borderRadius: '16px',
+      padding: '2.5rem',
+      border: '1px solid #e2e8f0',
       textAlign: 'center',
-      boxShadow: '0 1px 3px rgba(0, 0, 0, 0.08)',
-      transition: 'all 0.3s'
-    }}>
+      boxShadow: '0 10px 30px rgba(0, 0, 0, 0.08)',
+      transition: 'all 0.3s',
+      position: 'relative',
+      overflow: 'hidden',
+      cursor: 'pointer'
+    }}
+      onMouseEnter={(e) => {
+        e.currentTarget.style.boxShadow = '0 15px 40px rgba(0, 0, 0, 0.12)'
+        e.currentTarget.style.transform = 'translateY(-4px)'
+      }}
+      onMouseLeave={(e) => {
+        e.currentTarget.style.boxShadow = '0 10px 30px rgba(0, 0, 0, 0.08)'
+        e.currentTarget.style.transform = 'translateY(0)'
+      }}
+    >
+      {/* Gradient overlay */}
       <div style={{
-        fontSize: '2.5rem',
-        marginBottom: '1rem'
+        position: 'absolute',
+        top: 0,
+        right: -40,
+        width: '150px',
+        height: '150px',
+        background: `linear-gradient(135deg, ${color}, transparent)`,
+        opacity: 0.05,
+        borderRadius: '50%'
+      }} />
+      
+      <div style={{
+        fontSize: '3rem',
+        marginBottom: '1.25rem',
+        position: 'relative',
+        zIndex: 1
       }}>
         {icon}
       </div>
       <h3 style={{
-        color: '#6b7280',
-        fontSize: '0.875rem',
-        fontWeight: 600,
+        color: '#64748b',
+        fontSize: '0.85rem',
+        fontWeight: 700,
         textTransform: 'uppercase',
-        margin: '0 0 0.5rem 0',
-        letterSpacing: '0.05em'
+        margin: '0 0 0.75rem 0',
+        letterSpacing: '0.08em'
       }}>
         {title}
       </h3>
       <p style={{
-        color: color,
-        fontSize: '2.5rem',
-        fontWeight: 800,
-        margin: '1rem 0'
+        background: `linear-gradient(135deg, ${color}, ${color}dd)`,
+        WebkitBackgroundClip: 'text',
+        WebkitTextFillColor: 'transparent',
+        backgroundClip: 'text',
+        fontSize: '2.75rem',
+        fontWeight: 900,
+        margin: '1.25rem 0',
+        position: 'relative',
+        zIndex: 1,
+        letterSpacing: '-1px'
       }}>
         {value}
       </p>
       {subtitle && (
         <p style={{
-          color: '#9ca3af',
-          fontSize: '0.875rem',
-          margin: 0
+          color: '#94a3b8',
+          fontSize: '0.9rem',
+          margin: 0,
+          fontWeight: 500,
+          position: 'relative',
+          zIndex: 1
         }}>
           {subtitle}
         </p>
@@ -106,36 +146,40 @@ export default function Dashboard() {
   return (
     <div style={{
       minHeight: '100vh',
-      background: 'linear-gradient(135deg, #ffffff 0%, #f9fafb 100%)',
-      padding: '4rem 2rem',
+      background: 'linear-gradient(135deg, #f8fafc 0%, #e0e7ff 100%)',
+      padding: '3.5rem 2rem',
       fontFamily: 'system-ui, -apple-system, sans-serif'
     }}>
-      <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
+      <div style={{ maxWidth: '1400px', margin: '0 auto' }}>
         {/* Header */}
-        <div style={{ marginBottom: '3rem' }}>
+        <div style={{ marginBottom: '3.5rem' }}>
           <h1 style={{
-            fontSize: '2.5rem',
-            fontWeight: 800,
-            color: '#1f2937',
+            fontSize: '3rem',
+            fontWeight: 900,
+            background: 'linear-gradient(135deg, #3b82f6, #2563eb)',
+            WebkitBackgroundClip: 'text',
+            WebkitTextFillColor: 'transparent',
+            backgroundClip: 'text',
             margin: '0 0 0.5rem 0'
           }}>
-            Analytics
+            📊 Analytics Dashboard
           </h1>
           <p style={{
-            fontSize: '1.05rem',
-            color: '#6b7280',
-            margin: 0
+            fontSize: '1.1rem',
+            color: '#64748b',
+            margin: 0,
+            fontWeight: 500
           }}>
-            Your detection statistics at a glance
+            Your detection statistics and insights
           </p>
         </div>
 
         {/* Stats Grid */}
         <div style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
-          gap: '1.5rem',
-          marginBottom: '3rem'
+          gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+          gap: '2rem',
+          marginBottom: '3.5rem'
         }}>
           <StatCard
             icon="📊"
@@ -166,8 +210,6 @@ export default function Dashboard() {
             color="#f59e0b"
           />
         </div>
-
-        {/* Info Boxes */}
         <div style={{
           display: 'grid',
           gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',

@@ -28,101 +28,144 @@ export default function Navbar() {
       position: 'sticky',
       top: 0,
       zIndex: 50,
-      backgroundColor: '#ffffff',
-      borderBottom: '1px solid #e5e7eb',
-      boxShadow: '0 1px 3px rgba(0, 0, 0, 0.05)',
+      background: 'linear-gradient(135deg, #ffffff 0%, #f8fafc 100%)',
+      borderBottom: '1px solid #e2e8f0',
+      boxShadow: '0 4px 12px rgba(0, 0, 0, 0.08)',
       fontFamily: 'system-ui, -apple-system, sans-serif'
     }}>
-      <div style={{ maxWidth: '100%', margin: '0 auto', padding: '0 2rem' }}>
+      <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '0 2rem' }}>
         <div style={{
           display: 'flex',
           justifyContent: 'space-between',
           alignItems: 'center',
-          height: '3.5rem'
+          height: '4rem'
         }}>
           {/* Logo/Brand */}
           <Link to="/" style={{
             display: 'flex',
             alignItems: 'center',
-            gap: '0.5rem',
-            color: '#1f2937',
-            fontWeight: 700,
-            fontSize: '1.2rem',
+            gap: '0.75rem',
+            background: 'linear-gradient(135deg, #3b82f6, #2563eb)',
+            WebkitBackgroundClip: 'text',
+            WebkitTextFillColor: 'transparent',
+            backgroundClip: 'text',
+            fontWeight: 800,
+            fontSize: '1.3rem',
             textDecoration: 'none',
             opacity: 1,
-            transition: 'opacity 0.2s'
+            transition: 'opacity 0.3s'
           }} 
-            onMouseEnter={(e) => e.target.style.opacity = '0.7'}
+            onMouseEnter={(e) => e.target.style.opacity = '0.8'}
             onMouseLeave={(e) => e.target.style.opacity = '1'}
           >
-            🔍 AIDetect
+            ✨ AIDetect
           </Link>
 
           {/* Navigation Links */}
           <div style={{
             display: 'flex',
             alignItems: 'center',
-            gap: '2.5rem'
+            gap: '3rem'
           }}>
             <Link to="/" style={{
-              color: '#6b7280',
+              color: '#4b5563',
               textDecoration: 'none',
               fontSize: '0.95rem',
               fontWeight: 500,
-              transition: 'color 0.2s'
+              transition: 'all 0.3s',
+              paddingBottom: '0.5rem',
+              borderBottom: '2px solid transparent'
             }} 
-              onMouseEnter={(e) => e.target.style.color = '#1f2937'}
-              onMouseLeave={(e) => e.target.style.color = '#6b7280'}
+              onMouseEnter={(e) => {
+                e.target.style.color = '#3b82f6'
+                e.target.style.borderBottomColor = '#3b82f6'
+              }}
+              onMouseLeave={(e) => {
+                e.target.style.color = '#4b5563'
+                e.target.style.borderBottomColor = 'transparent'
+              }}
             >
-              Detect
+              🔍 Detect
             </Link>
             <Link to="/compare" style={{
-              color: '#6b7280',
+              color: '#4b5563',
               textDecoration: 'none',
               fontSize: '0.95rem',
               fontWeight: 500,
-              transition: 'color 0.2s'
+              transition: 'all 0.3s',
+              paddingBottom: '0.5rem',
+              borderBottom: '2px solid transparent'
             }}
-              onMouseEnter={(e) => e.target.style.color = '#1f2937'}
-              onMouseLeave={(e) => e.target.style.color = '#6b7280'}
+              onMouseEnter={(e) => {
+                e.target.style.color = '#3b82f6'
+                e.target.style.borderBottomColor = '#3b82f6'
+              }}
+              onMouseLeave={(e) => {
+                e.target.style.color = '#4b5563'
+                e.target.style.borderBottomColor = 'transparent'
+              }}
             >
-              Compare
+              ⚖️ Compare
             </Link>
             <Link to="/batch" style={{
-              color: '#6b7280',
+              color: '#4b5563',
               textDecoration: 'none',
               fontSize: '0.95rem',
               fontWeight: 500,
-              transition: 'color 0.2s'
+              transition: 'all 0.3s',
+              paddingBottom: '0.5rem',
+              borderBottom: '2px solid transparent'
             }}
-              onMouseEnter={(e) => e.target.style.color = '#1f2937'}
-              onMouseLeave={(e) => e.target.style.color = '#6b7280'}
+              onMouseEnter={(e) => {
+                e.target.style.color = '#3b82f6'
+                e.target.style.borderBottomColor = '#3b82f6'
+              }}
+              onMouseLeave={(e) => {
+                e.target.style.color = '#4b5563'
+                e.target.style.borderBottomColor = 'transparent'
+              }}
             >
-              Batch
+              📦 Batch
             </Link>
             <Link to="/dashboard" style={{
-              color: '#6b7280',
+              color: '#4b5563',
               textDecoration: 'none',
               fontSize: '0.95rem',
               fontWeight: 500,
-              transition: 'color 0.2s'
+              transition: 'all 0.3s',
+              paddingBottom: '0.5rem',
+              borderBottom: '2px solid transparent'
             }}
-              onMouseEnter={(e) => e.target.style.color = '#1f2937'}
-              onMouseLeave={(e) => e.target.style.color = '#6b7280'}
+              onMouseEnter={(e) => {
+                e.target.style.color = '#3b82f6'
+                e.target.style.borderBottomColor = '#3b82f6'
+              }}
+              onMouseLeave={(e) => {
+                e.target.style.color = '#4b5563'
+                e.target.style.borderBottomColor = 'transparent'
+              }}
             >
-              Analytics
+              📊 Analytics
             </Link>
             <Link to="/history" style={{
-              color: '#6b7280',
+              color: '#4b5563',
               textDecoration: 'none',
               fontSize: '0.95rem',
               fontWeight: 500,
-              transition: 'color 0.2s'
+              transition: 'all 0.3s',
+              paddingBottom: '0.5rem',
+              borderBottom: '2px solid transparent'
             }}
-              onMouseEnter={(e) => e.target.style.color = '#1f2937'}
-              onMouseLeave={(e) => e.target.style.color = '#6b7280'}
+              onMouseEnter={(e) => {
+                e.target.style.color = '#3b82f6'
+                e.target.style.borderBottomColor = '#3b82f6'
+              }}
+              onMouseLeave={(e) => {
+                e.target.style.color = '#4b5563'
+                e.target.style.borderBottomColor = 'transparent'
+              }}
             >
-              History
+              📋 History
             </Link>
           </div>
 
@@ -130,22 +173,39 @@ export default function Navbar() {
           <div style={{
             display: 'flex',
             alignItems: 'center',
-            gap: '0.5rem',
-            padding: '0.5rem 0.875rem',
-            backgroundColor: isOnline ? '#dcfce7' : '#fee2e2',
-            borderRadius: '6px'
-          }}>
+            gap: '0.75rem',
+            padding: '0.5rem 1.25rem',
+            backgroundColor: isOnline ? '#ecfdf5' : '#fef2f2',
+            borderRadius: '12px',
+            border: `1px solid ${isOnline ? '#d1fae5' : '#fee2e2'}`,
+            cursor: 'pointer',
+            transition: 'all 0.3s',
+            boxShadow: isOnline ? '0 2px 8px rgba(16, 185, 129, 0.1)' : '0 2px 8px rgba(239, 68, 68, 0.1)'
+          }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.boxShadow = isOnline 
+                ? '0 4px 12px rgba(16, 185, 129, 0.2)' 
+                : '0 4px 12px rgba(239, 68, 68, 0.2)'
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.boxShadow = isOnline 
+                ? '0 2px 8px rgba(16, 185, 129, 0.1)' 
+                : '0 2px 8px rgba(239, 68, 68, 0.1)'
+            }}
+          >
             <div style={{
-              width: '0.625rem',
-              height: '0.625rem',
+              width: '8px',
+              height: '8px',
               borderRadius: '50%',
               backgroundColor: isOnline ? '#10b981' : '#ef4444',
-              animation: !loading && isOnline ? 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite' : 'none'
+              animation: !loading && isOnline ? 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite' : 'none',
+              boxShadow: isOnline ? '0 0 6px rgba(16, 185, 129, 0.6)' : '0 0 6px rgba(239, 68, 68, 0.6)'
             }}></div>
             <span style={{
               fontSize: '0.85rem',
-              fontWeight: 500,
-              color: isOnline ? '#166534' : '#991b1b'
+              fontWeight: 600,
+              color: isOnline ? '#059669' : '#dc2626',
+              letterSpacing: '0.3px'
             }}>
               {loading ? 'Checking' : isOnline ? 'Backend Online' : 'Backend Offline'}
             </span>

@@ -57,110 +57,161 @@ export default function Home() {
   if (result) {
     const isAI = result.verdict === 'AI Generated'
     const color = isAI ? '#ef4444' : '#10b981'
+    const bgColor = isAI ? '#fef2f2' : '#f0fdf4'
     
     return (
       <div style={{
         minHeight: '100vh',
-        background: 'linear-gradient(135deg, #ffffff 0%, #f9fafb 100%)',
-        padding: '4rem 2rem',
+        background: 'linear-gradient(135deg, #f8fafc 0%, #e0e7ff 100%)',
+        padding: '3rem 2rem',
         fontFamily: 'system-ui, -apple-system, sans-serif'
       }}>
-        <div style={{ maxWidth: '600px', margin: '0 auto' }}>
+        <div style={{ maxWidth: '700px', margin: '0 auto' }}>
           {/* Result Card */}
           <div style={{
             background: '#ffffff',
-            borderRadius: '16px',
-            padding: '3rem 2rem',
+            borderRadius: '20px',
+            padding: '3.5rem 2.5rem',
             textAlign: 'center',
             border: `2px solid ${color}`,
-            marginBottom: '2rem'
+            marginBottom: '2rem',
+            boxShadow: `0 15px 40px ${isAI ? 'rgba(239, 68, 68, 0.15)' : 'rgba(16, 185, 129, 0.15)'}`,
+            position: 'relative',
+            overflow: 'hidden'
           }}>
+            {/* Gradient Background */}
             <div style={{
-              fontSize: '4rem',
-              marginBottom: '1rem'
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              right: 0,
+              height: '4px',
+              background: `linear-gradient(90deg, ${color}, transparent)`,
+              opacity: 0.8
+            }} />
+            
+            <div style={{
+              fontSize: '5rem',
+              marginBottom: '1.5rem',
+              opacity: 0.95
             }}>
               {isAI ? '🤖' : '✅'}
             </div>
             
             <h2 style={{
-              fontSize: '1.875rem',
-              fontWeight: 700,
-              color: '#1f2937',
-              margin: '0 0 0.5rem 0'
+              fontSize: '2.2rem',
+              fontWeight: 800,
+              color: '#0f172a',
+              margin: '0 0 0.75rem 0',
+              background: `linear-gradient(135deg, ${color}, ${isAI ? '#dc2626' : '#059669'})`,
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              backgroundClip: 'text'
             }}>
               {isAI ? 'AI Generated' : 'Human Written'}
             </h2>
             
             <p style={{
-              fontSize: '3rem',
-              fontWeight: 800,
-              color: color,
-              margin: '1.5rem 0'
+              fontSize: '1rem',
+              color: '#64748b',
+              margin: '0 0 2rem 0',
+              fontWeight: 500
             }}>
-              {result.confidence.toFixed(1)}%
+              Confidence Level
             </p>
-            
-            <p style={{
-              color: '#6b7280',
-              fontSize: '0.95rem',
-              margin: 0
+
+            {/* Confidence Circle */}
+            <div style={{
+              position: 'relative',
+              width: '180px',
+              height: '180px',
+              margin: '0 auto 2rem',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center'
             }}>
-              Confidence Score
-            </p>
+              <svg style={{
+                position: 'absolute',
+                width: '100%',
+                height: '100%',
+                opacity: 0.2
+              }}>
+                <circle cx="90" cy="90" r="80" stroke={color} strokeWidth="3" fill="none" />
+              </svg>
+              <div style={{
+                fontSize: '3.5rem',
+                fontWeight: 900,
+                color: color,
+                letterSpacing: '-2px'
+              }}>
+                {result.confidence.toFixed(1)}%
+              </div>
+            </div>
           </div>
 
           {/* Model Scores */}
           <div style={{
             background: '#ffffff',
             borderRadius: '16px',
-            padding: '2rem',
-            marginBottom: '2rem'
+            padding: '2.5rem',
+            marginBottom: '2rem',
+            boxShadow: '0 10px 30px rgba(0, 0, 0, 0.08)',
+            border: '1px solid #e2e8f0'
           }}>
             <h3 style={{
-              fontSize: '1rem',
-              fontWeight: 600,
-              color: '#1f2937',
+              fontSize: '1.1rem',
+              fontWeight: 700,
+              color: '#0f172a',
               marginTop: 0,
-              marginBottom: '1.5rem'
+              marginBottom: '2rem',
+              letterSpacing: '0.3px'
             }}>
-              Model Analysis
+              📊 Model Analysis Breakdown
             </h3>
             
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '1.75rem' }}>
               {Object.entries(result.breakdown).map(([model, score]) => (
                 <div key={model}>
                   <div style={{
                     display: 'flex',
                     justifyContent: 'space-between',
-                    marginBottom: '0.5rem'
+                    alignItems: 'center',
+                    marginBottom: '0.75rem'
                   }}>
                     <span style={{
-                      fontSize: '0.9rem',
-                      fontWeight: 500,
-                      color: '#374151',
-                      textTransform: 'capitalize'
+                      fontSize: '0.95rem',
+                      fontWeight: 600,
+                      color: '#1e293b',
+                      textTransform: 'capitalize',
+                      letterSpacing: '0.2px'
                     }}>
                       {model.replace(/_/g, ' ')}
                     </span>
                     <span style={{
-                      fontSize: '0.9rem',
-                      fontWeight: 600,
-                      color: score >= 70 ? '#ef4444' : score >= 40 ? '#f59e0b' : '#10b981'
+                      fontSize: '1rem',
+                      fontWeight: 700,
+                      color: score >= 70 ? '#ef4444' : score >= 40 ? '#f59e0b' : '#10b981',
+                      background: score >= 70 ? '#fef2f2' : score >= 40 ? '#fefce8' : '#f0fdf4',
+                      padding: '0.4rem 0.9rem',
+                      borderRadius: '8px'
                     }}>
                       {score.toFixed(1)}%
                     </span>
                   </div>
                   <div style={{
-                    height: '6px',
-                    backgroundColor: '#e5e7eb',
-                    borderRadius: '3px',
-                    overflow: 'hidden'
+                    height: '8px',
+                    backgroundColor: '#e2e8f0',
+                    borderRadius: '4px',
+                    overflow: 'hidden',
+                    boxShadow: 'inset 0 2px 4px rgba(0, 0, 0, 0.05)'
                   }}>
                     <div style={{
                       height: '100%',
                       width: `${Math.min(score, 100)}%`,
                       backgroundColor: score >= 70 ? '#ef4444' : score >= 40 ? '#f59e0b' : '#10b981',
-                      transition: 'width 0.6s ease-out'
+                      transition: 'width 0.8s ease-out',
+                      borderRadius: '4px',
+                      boxShadow: `0 0 8px ${score >= 70 ? 'rgba(239, 68, 68, 0.4)' : score >= 40 ? 'rgba(245, 158, 11, 0.4)' : 'rgba(16, 185, 129, 0.4)'}`
                     }} />
                   </div>
                 </div>
@@ -176,20 +227,28 @@ export default function Home() {
             }}
             style={{
               width: '100%',
-              padding: '1rem',
-              backgroundColor: '#3b82f6',
+              padding: '1.1rem',
+              background: 'linear-gradient(135deg, #3b82f6, #2563eb)',
               color: 'white',
               border: 'none',
-              borderRadius: '8px',
+              borderRadius: '10px',
               fontSize: '1rem',
-              fontWeight: 600,
+              fontWeight: 700,
               cursor: 'pointer',
-              transition: 'background-color 0.2s'
+              transition: 'all 0.3s',
+              boxShadow: '0 4px 12px rgba(59, 130, 246, 0.3)',
+              letterSpacing: '0.3px'
             }}
-            onMouseEnter={(e) => e.target.style.backgroundColor = '#2563eb'}
-            onMouseLeave={(e) => e.target.style.backgroundColor = '#3b82f6'}
+            onMouseEnter={(e) => {
+              e.target.style.boxShadow = '0 8px 20px rgba(59, 130, 246, 0.4)'
+              e.target.style.transform = 'translateY(-2px)'
+            }}
+            onMouseLeave={(e) => {
+              e.target.style.boxShadow = '0 4px 12px rgba(59, 130, 246, 0.3)'
+              e.target.style.transform = 'translateY(0)'
+            }}
           >
-            Analyze Again
+            ✨ Analyze Again
           </button>
         </div>
       </div>
@@ -199,27 +258,33 @@ export default function Home() {
   return (
     <div style={{
       minHeight: '100vh',
-      background: 'linear-gradient(135deg, #ffffff 0%, #f9fafb 100%)',
-      padding: '4rem 2rem',
+      background: 'linear-gradient(135deg, #f8fafc 0%, #e0e7ff 100%)',
+      padding: '3rem 2rem',
       fontFamily: 'system-ui, -apple-system, sans-serif'
     }}>
-      <div style={{ maxWidth: '600px', margin: '0 auto' }}>
-        {/* Header */}
-        <div style={{ marginBottom: '3rem', textAlign: 'center' }}>
+      <div style={{ maxWidth: '700px', margin: '0 auto' }}>
+        {/* Hero Section */}
+        <div style={{ marginBottom: '2.5rem', textAlign: 'center' }}>
           <h1 style={{
-            fontSize: '2.5rem',
-            fontWeight: 800,
-            color: '#1f2937',
-            margin: '0 0 0.75rem 0'
+            fontSize: '3.5rem',
+            fontWeight: 900,
+            color: '#0f172a',
+            margin: '0 0 0.75rem 0',
+            background: 'linear-gradient(135deg, #3b82f6, #2563eb)',
+            WebkitBackgroundClip: 'text',
+            WebkitTextFillColor: 'transparent',
+            backgroundClip: 'text'
           }}>
-            Detect AI Text
+            AI Detection
           </h1>
           <p style={{
-            fontSize: '1.05rem',
-            color: '#6b7280',
-            margin: 0
+            fontSize: '1.15rem',
+            color: '#475569',
+            margin: 0,
+            fontWeight: 500,
+            letterSpacing: '0.3px'
           }}>
-            Identify AI-generated content with precision
+            Instantly identify AI-generated text with advanced analysis
           </p>
         </div>
 
@@ -236,14 +301,28 @@ export default function Home() {
               setText('')
             }}
             style={{
-              padding: '0.75rem 1.5rem',
-              backgroundColor: mode === 'text' ? '#3b82f6' : '#f0f0f0',
-              color: mode === 'text' ? 'white' : '#6b7280',
-              border: 'none',
-              borderRadius: '8px',
-              fontWeight: 500,
+              padding: '0.9rem 2rem',
+              backgroundColor: mode === 'text' ? '#3b82f6' : '#ffffff',
+              color: mode === 'text' ? 'white' : '#475569',
+              border: '2px solid ' + (mode === 'text' ? '#3b82f6' : '#e2e8f0'),
+              borderRadius: '10px',
+              fontWeight: 600,
               cursor: 'pointer',
-              transition: 'all 0.2s'
+              transition: 'all 0.3s',
+              boxShadow: mode === 'text' ? '0 4px 12px rgba(59, 130, 246, 0.3)' : 'none',
+              fontSize: '0.95rem'
+            }}
+            onMouseEnter={(e) => {
+              if (mode !== 'text') {
+                e.target.style.borderColor = '#3b82f6'
+                e.target.style.backgroundColor = '#eff6ff'
+              }
+            }}
+            onMouseLeave={(e) => {
+              if (mode !== 'text') {
+                e.target.style.borderColor = '#e2e8f0'
+                e.target.style.backgroundColor = '#ffffff'
+              }
             }}
           >
             📝 Text Mode
@@ -254,14 +333,28 @@ export default function Home() {
               setText('')
             }}
             style={{
-              padding: '0.75rem 1.5rem',
-              backgroundColor: mode === 'file' ? '#3b82f6' : '#f0f0f0',
-              color: mode === 'file' ? 'white' : '#6b7280',
-              border: 'none',
-              borderRadius: '8px',
-              fontWeight: 500,
+              padding: '0.9rem 2rem',
+              backgroundColor: mode === 'file' ? '#3b82f6' : '#ffffff',
+              color: mode === 'file' ? 'white' : '#475569',
+              border: '2px solid ' + (mode === 'file' ? '#3b82f6' : '#e2e8f0'),
+              borderRadius: '10px',
+              fontWeight: 600,
               cursor: 'pointer',
-              transition: 'all 0.2s'
+              transition: 'all 0.3s',
+              boxShadow: mode === 'file' ? '0 4px 12px rgba(59, 130, 246, 0.3)' : 'none',
+              fontSize: '0.95rem'
+            }}
+            onMouseEnter={(e) => {
+              if (mode !== 'file') {
+                e.target.style.borderColor = '#3b82f6'
+                e.target.style.backgroundColor = '#eff6ff'
+              }
+            }}
+            onMouseLeave={(e) => {
+              if (mode !== 'file') {
+                e.target.style.borderColor = '#e2e8f0'
+                e.target.style.backgroundColor = '#ffffff'
+              }
             }}
           >
             📄 File Mode
@@ -273,9 +366,17 @@ export default function Home() {
           background: '#ffffff',
           borderRadius: '16px',
           padding: '2.5rem',
-          boxShadow: '0 1px 3px rgba(0, 0, 0, 0.08)',
-          border: '1px solid #f0f0f0'
-        }}>
+          boxShadow: '0 10px 30px rgba(0, 0, 0, 0.12)',
+          border: '1px solid #e2e8f0',
+          transition: 'all 0.3s'
+        }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.boxShadow = '0 15px 40px rgba(0, 0, 0, 0.15)'
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.boxShadow = '0 10px 30px rgba(0, 0, 0, 0.12)'
+          }}
+        >
           {mode === 'text' ? (
             <>
               <textarea
@@ -285,47 +386,53 @@ export default function Home() {
                 style={{
                   width: '100%',
                   minHeight: '240px',
-                  padding: '1rem',
-                  backgroundColor: '#f9fafb',
-                  color: '#1f2937',
-                  border: '1px solid #e5e7eb',
-                  borderRadius: '8px',
+                  padding: '1.25rem',
+                  backgroundColor: '#f8fafc',
+                  color: '#0f172a',
+                  border: '1.5px solid #e2e8f0',
+                  borderRadius: '10px',
                   fontSize: '0.95rem',
-                  fontFamily: 'inherit',
+                  fontFamily: 'system-ui, -apple-system, sans-serif',
                   outline: 'none',
                   boxSizing: 'border-box',
                   resize: 'vertical',
-                  transition: 'all 0.2s'
+                  transition: 'all 0.3s',
+                  fontWeight: 500
                 }}
                 onFocus={(e) => {
                   e.target.style.backgroundColor = '#ffffff'
                   e.target.style.borderColor = '#3b82f6'
-                  e.target.style.boxShadow = '0 0 0 3px rgba(59, 130, 246, 0.1)'
+                  e.target.style.boxShadow = '0 0 0 3px rgba(59, 130, 246, 0.15)'
                 }}
                 onBlur={(e) => {
-                  e.target.style.backgroundColor = '#f9fafb'
-                  e.target.style.borderColor = '#e5e7eb'
+                  e.target.style.backgroundColor = '#f8fafc'
+                  e.target.style.borderColor = '#e2e8f0'
                   e.target.style.boxShadow = 'none'
                 }}
               />
 
               {/* Word Count */}
               <div style={{
-                marginTop: '1rem',
+                marginTop: '1.25rem',
                 display: 'flex',
                 justifyContent: 'space-between',
-                alignItems: 'center'
+                alignItems: 'center',
+                padding: '0.75rem 1rem',
+                backgroundColor: '#f0f4f8',
+                borderRadius: '8px'
               }}>
                 <span style={{
-                  fontSize: '0.875rem',
-                  color: '#6b7280'
+                  fontSize: '0.9rem',
+                  color: '#475569',
+                  fontWeight: 500
                 }}>
                   {text.trim().split(/\s+/).filter(w => w.length > 0).length} words
                 </span>
                 {text.trim().split(/\s+/).filter(w => w.length > 0).length < 20 && text.trim() && (
                   <span style={{
-                    fontSize: '0.875rem',
-                    color: '#f59e0b'
+                    fontSize: '0.9rem',
+                    color: '#f59e0b',
+                    fontWeight: 600
                   }}>
                     Need {20 - text.trim().split(/\s+/).filter(w => w.length > 0).length} more
                   </span>
@@ -338,36 +445,40 @@ export default function Home() {
                 disabled={isLoading || !text.trim()}
                 style={{
                   width: '100%',
-                  marginTop: '1.5rem',
-                  padding: '1rem',
-                  backgroundColor: isLoading || !text.trim() ? '#d1d5db' : '#3b82f6',
-                  color: isLoading || !text.trim() ? '#9ca3af' : 'white',
+                  marginTop: '1.75rem',
+                  padding: '1.1rem',
+                  background: isLoading || !text.trim() ? '#cbd5e1' : 'linear-gradient(135deg, #3b82f6, #2563eb)',
+                  color: isLoading || !text.trim() ? '#94a3b8' : 'white',
                   border: 'none',
-                  borderRadius: '8px',
+                  borderRadius: '10px',
                   fontSize: '1rem',
-                  fontWeight: 600,
+                  fontWeight: 700,
                   cursor: isLoading || !text.trim() ? 'not-allowed' : 'pointer',
-                  transition: 'all 0.2s'
+                  transition: 'all 0.3s',
+                  boxShadow: isLoading || !text.trim() ? 'none' : '0 4px 12px rgba(59, 130, 246, 0.3)',
+                  letterSpacing: '0.3px'
                 }}
                 onMouseEnter={(e) => {
                   if (!isLoading && text.trim()) {
-                    e.target.style.backgroundColor = '#2563eb'
+                    e.target.style.boxShadow = '0 8px 20px rgba(59, 130, 246, 0.4)'
+                    e.target.style.transform = 'translateY(-2px)'
                   }
                 }}
                 onMouseLeave={(e) => {
                   if (!isLoading && text.trim()) {
-                    e.target.style.backgroundColor = '#3b82f6'
+                    e.target.style.boxShadow = '0 4px 12px rgba(59, 130, 246, 0.3)'
+                    e.target.style.transform = 'translateY(0)'
                   }
                 }}
               >
-                {isLoading ? 'Analyzing...' : 'Analyze'}
+                {isLoading ? '⏳ Analyzing...' : '✨ Analyze'}
               </button>
             </>
           ) : (
             <>
               <div
                 style={{
-                  border: '2px dashed #e5e7eb',
+                  border: '2.5px dashed #cbd5e1',
                   borderRadius: '12px',
                   padding: '3rem',
                   textAlign: 'center',
@@ -376,16 +487,21 @@ export default function Home() {
                   flexDirection: 'column',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  cursor: 'pointer',
-                  transition: 'all 0.2s'
+                  cursor: isLoading ? 'not-allowed' : 'pointer',
+                  transition: 'all 0.3s',
+                  backgroundColor: '#f8fafc'
                 }}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.borderColor = '#3b82f6'
-                  e.currentTarget.style.backgroundColor = '#eff6ff'
+                  if (!isLoading) {
+                    e.currentTarget.style.borderColor = '#3b82f6'
+                    e.currentTarget.style.backgroundColor = '#eff6ff'
+                  }
                 }}
                 onMouseLeave={(e) => {
-                  e.currentTarget.style.borderColor = '#e5e7eb'
-                  e.currentTarget.style.backgroundColor = 'transparent'
+                  if (!isLoading) {
+                    e.currentTarget.style.borderColor = '#cbd5e1'
+                    e.currentTarget.style.backgroundColor = '#f8fafc'
+                  }
                 }}
               >
                 <input
