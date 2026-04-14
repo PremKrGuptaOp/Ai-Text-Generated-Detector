@@ -1,3 +1,407 @@
+
+# 🤖 AI Text Detector - Frontend
+
+<div align="center">
+
+A **production-ready** React.js frontend for detecting AI-generated text with advanced analysis and reporting.
+
+[![React](https://img.shields.io/badge/React-18-61DAFB?style=flat&logo=react)](https://react.dev)
+[![Vite](https://img.shields.io/badge/Vite-5+-646CFF?style=flat&logo=vite)](https://vitejs.dev)
+[![License](https://img.shields.io/badge/License-MIT-green?style=flat)](https://opensource.org/licenses/MIT)
+[![Status](https://img.shields.io/badge/Status-Production--Ready-brightgreen?style=flat)](#)
+
+[🚀 Getting Started](#-installation) • [📚 Documentation](#-pages) • [🔌 API](#-api-endpoints) • [🎯 Features](#-features)
+
+</div>
+
+---
+
+## ✨ Features
+
+### 📝 Text Detection
+- Paste text or upload files (TXT, PDF, DOCX)
+- Real-time AI/Human verdict with confidence scores
+- Minimum 20 words for analysis
+
+### 📦 Batch Processing
+- Process 20+ documents simultaneously
+- Progress tracking with real-time updates
+- Summary statistics and export options
+
+### 🔄 Document Comparison
+- Side-by-side comparison interface
+- Text and file upload modes
+- Similarity percentage and verdict comparison
+
+### 📊 Advanced Analysis
+- 4-model ensemble: Statistical, RoBERTa, Zero-Shot, Watermark
+- Sentence-level AI content highlighting
+- SHAP explainability (which words triggered detection)
+
+### 📈 Analytics Dashboard
+- Real-time statistics and metrics
+- AI vs Human detection trends
+- Confidence score distributions
+
+### 📋 Submission History
+- Track all past analyses with timestamps
+- Filterable and sortable table
+- Color-coded results for quick scanning
+
+### 🎨 Modern UI
+- Clean, minimalist light theme design
+- Fully responsive (mobile, tablet, desktop)
+- Smooth animations and transitions
+
+---
+
+## 🛠️ Tech Stack
+
+| Technology | Version | Purpose |
+|-----------|---------|---------|
+| **React** | 18+ | UI Framework |
+| **Vite** | 5+ | Build tool & Dev server |
+| **React Router** | v6 | Page routing |
+| **Axios** | 1+ | HTTP client |
+| **React Hot Toast** | 2+ | Notifications |
+| **Lucide React** | Latest | Icons |
+| **Recharts** | 2+ | Charts & Analytics |
+
+---
+
+## 📋 Project Structure
+
+```
+src/
+├── api/
+│   └── detector.js              📡 17 API endpoints
+├── components/
+│   └── Navbar.jsx               🧭 Navigation + Health check
+├── pages/
+│   ├── Home.jsx                 🏠 Detection interface
+│   ├── Compare.jsx              🔄 Comparison tool
+│   ├── Batch.jsx                📦 Batch processor
+│   ├── Dashboard.jsx            📊 Analytics
+│   └── History.jsx              📋 Submissions log
+├── App.jsx                      🎯 Router & config
+├── main.jsx                     ⚡ Entry point
+└── index.css                    🎨 Global styles
+```
+
+---
+
+## 🚀 Installation
+
+### Prerequisites
+- **Node.js** 16+ and **npm/yarn**
+- **Backend API** running at `http://localhost:8000`
+
+### Quick Start
+
+```bash
+# 1️⃣ Clone the repository
+git clone https://github.com/PremKrGuptaOp/Ai-Text-Generated-Detector.git
+cd "App For FY"
+
+# 2️⃣ Install dependencies
+npm install
+
+# 3️⃣ Start dev server
+npm run dev
+```
+
+**Frontend available at:** `http://localhost:3000`
+
+### Production Build
+
+```bash
+npm run build        # Build for production
+npm run preview      # Preview the build
+```
+
+---
+
+## 🔌 API Endpoints
+
+### Detection Operations
+```
+POST  /detect                Detection analysis
+POST  /detect/sentences      Sentence-level breakdown
+POST  /detect/file           Single file upload
+POST  /detect/batch          Multiple files batch processing
+```
+
+### Advanced Features
+```
+POST  /compare               Compare two texts
+POST  /compare/files         Compare two uploaded files
+POST  /analyze/advanced      Deep analysis
+POST  /plagiarism            Plagiarism detection
+```
+
+### Reports & Data
+```
+POST  /explain               SHAP explainability
+POST  /report                PDF report generation
+POST  /export                Export as PDF/DOCX
+GET   /history               Past submissions
+GET   /stats                 Analytics data
+GET   /health                Backend status
+GET   /status/{jobId}        Job processing status
+```
+
+---
+
+## 📄 Pages Overview
+
+### 🏠 Home Page (`/`)
+- **Text Input Mode**: Paste and analyze text
+- **File Upload Mode**: Upload documents for analysis
+- **Results Display**:
+  - Main verdict card with confidence circle
+  - 4-model score breakdown with progress bars
+  - Sentence-level highlighting
+  - Explainability insights
+  - Download PDF reports
+
+### 🔄 Compare Page (`/compare`)
+- Dual input areas (text or files)
+- Side-by-side verdict comparison
+- Similarity percentage display
+- Confidence comparison metrics
+
+### 📦 Batch Page (`/batch`)
+- Drag & drop upload interface
+- File list with size display
+- Processing progress bar (0-100%)
+- Results summary table
+- Download results option
+
+### 📊 Dashboard Page (`/dashboard`)
+- 4 stat cards (Total, AI%, Human%, Confidence)
+- Detection trend charts
+- Feature highlights and tips
+
+### 📋 History Page (`/history`)
+- Sortable/filterable submissions table
+- 20 rows per page pagination
+- Color-coded verdict badges
+- Confidence color coding
+
+---
+
+## 🎨 Design System
+
+### Color Palette
+```
+🔵 Primary Blue      #3b82f6
+🟢 Success Green     #10b981
+🔴 Error Red         #ef4444
+🟡 Warning Amber     #f59e0b
+⚪ Background        #ffffff
+⚫ Text Dark         #1f2937
+```
+
+### Typography
+- **Headings**: Bold, clear hierarchy
+- **Body Text**: 16px for readability
+- **Monospace**: Code blocks and examples
+
+### Spacing & Layout
+- **Padding**: Consistent 16-24px margins
+- **Border Radius**: 8-12px for modern look
+- **Shadows**: Subtle depth (0 1px 3px)
+- **Responsive**: Mobile-first grid system
+
+---
+
+## 📱 Responsive Breakpoints
+
+```
+📱 Mobile    < 640px    Single column, full width
+📱 Tablet    640-1024px 2-column layout
+🖥️  Desktop   > 1024px   3-4 column layout
+```
+
+---
+
+## ⚙️ Configuration
+
+### Environment Setup
+
+Create `.env` file in root:
+```env
+VITE_API_BASE_URL=http://localhost:8000
+VITE_APP_NAME=AI Text Detector
+VITE_DEBUG=false
+```
+
+### Backend URL
+
+Edit `src/api/detector.js`:
+```javascript
+const API_BASE_URL = process.env.VITE_API_BASE_URL || 'http://localhost:8000'
+```
+
+---
+
+## 📦 Dependencies
+
+```json
+{
+  "react": "^18.0.0",
+  "react-dom": "^18.0.0",
+  "react-router-dom": "^6.0.0",
+  "axios": "^1.0.0",
+  "react-hot-toast": "^2.0.0",
+  "lucide-react": "latest",
+  "recharts": "^2.0.0"
+}
+```
+
+---
+
+## 🔧 Development
+
+### Available Commands
+
+```bash
+npm run dev       🚀 Start dev server (hot reload)
+npm run build     📦 Build for production
+npm run preview   👀 Preview production build
+npm run lint      🔍 Lint code
+```
+
+### Development Tips
+
+**Change Backend URL:**
+```javascript
+// src/api/detector.js
+const API_BASE_URL = 'http://your-backend:8000'
+```
+
+**Customize Colors:**
+Edit inline styles in components or create CSS variables.
+
+**Add New Pages:**
+1. Create `src/pages/NewPage.jsx`
+2. Add route in `src/App.jsx`
+3. Update navbar links
+
+---
+
+## 🐛 Troubleshooting
+
+### ❌ Backend Connection Error
+```
+✅ Check backend running: http://localhost:8000
+✅ Verify CORS settings
+✅ Test /health endpoint
+```
+
+### ❌ Port Already in Use
+```bash
+npm run dev -- --port 3001
+```
+
+### ❌ Blank Page / React Not Rendering
+```bash
+# Clear cache and reinstall
+rm -rf node_modules package-lock.json
+npm install
+npm run dev
+```
+
+### ❌ File Upload Issues
+- Check file size (< 10MB recommended)
+- Verify format: .txt, .pdf, .docx
+- Ensure backend has upload handlers
+
+---
+
+## 🌐 Browser Support
+
+| Browser | Support |
+|---------|---------|
+| Chrome  | ✅ Latest |
+| Firefox | ✅ Latest |
+| Safari  | ✅ Latest |
+| Edge    | ✅ Latest |
+| Mobile  | ✅ iOS Safari, Chrome |
+
+---
+
+## 📄 License
+
+**MIT License** - Open source and free to use
+
+---
+
+## 👤 Author
+
+<div align="center">
+
+**Prem Kumar Gupta**
+
+📧 [premkrgupta.op@gmail.com](mailto:premkrgupta.op@gmail.com)
+
+🔗 [GitHub](https://github.com/PremKrGuptaOp) • [LinkedIn](https://linkedin.com) • [Portfolio](https://portfolio.com)
+
+</div>
+
+---
+
+## 🤝 Contributing
+
+Contributions are welcome! Follow these steps:
+
+1. 🍴 **Fork** the repository
+2. 🌿 **Create** a feature branch (`git checkout -b feature/AmazingFeature`)
+3. 💾 **Commit** changes (`git commit -m 'Add AmazingFeature'`)
+4. 📤 **Push** to branch (`git push origin feature/AmazingFeature`)
+5. 🔀 **Open** a Pull Request
+
+---
+
+## 📚 Documentation
+
+- [API Docs](./docs/API.md) - Detailed endpoint documentation
+- [Setup Guide](./SETUP.md) - Step-by-step installation
+- [Architecture](./docs/ARCHITECTURE.md) - System design overview
+
+---
+
+## 🎓 Final Year Project
+
+This is a comprehensive **AI Text Detection System** built as a final year project. The frontend is **production-ready** and can integrate with any backend API following the specified endpoint structure.
+
+### Key Achievements
+✅ Fully responsive design
+✅ Real-time detection and analysis
+✅ Advanced explainability features
+✅ Batch processing capabilities
+✅ Production-grade error handling
+✅ Modern UI/UX design
+
+---
+
+## ⭐ Acknowledgments
+
+- React & Vite communities
+- FastAPI framework
+- All contributors and testers
+
+---
+
+<div align="center">
+
+**Made with ❤️ by Prem Kumar Gupta**
+
+⭐ If you find this helpful, please star the repo!
+
+[⬆ back to top](#-ai-text-detector---frontend)
+
+</div>
 # AI Text Detector - Frontend
 
 A production-ready React.js frontend for detecting AI-generated text. Analyze whether text was written by humans or generated by AI models.
